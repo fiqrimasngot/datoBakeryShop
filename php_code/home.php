@@ -1,5 +1,6 @@
 <?php
-    include('.php');
+    $title = "Home";
+    include('header.php');
 ?>
 
 <!DOCTYPE html>
@@ -10,7 +11,7 @@
     <!-- Title of the page -->
     <title>Home</title>
     <!-- Link to external CSS file -->
-    <link rel="stylesheet" href="home.css">
+    <link rel="stylesheet" href="/home.css">
 </head>
 <body>
     <div class="container">
