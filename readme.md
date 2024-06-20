@@ -1,5 +1,3 @@
-# Readme.md
-
 ## Overview
 
 This guide provides a series of Docker commands to manage and interact with a web application's files and permissions within Docker containers. These commands involve copying files, changing ownership and permissions, and viewing file contents.
@@ -55,29 +53,9 @@ This guide provides a series of Docker commands to manage and interact with a we
 
 6. **Change file permissions**
 
-   - Change permissions to `0740` recursively:
-
-     ```sh
-     docker exec datobakeryshop-nginx-1 chmod 0740 -R /var/www/html/
-     ```
-
-     This command changes the permissions of all files and directories in `/var/www/html/` to `0740` recursively in the `datobakeryshop-nginx-1` container.
-
-   - Change permissions to `0640` recursively:
-
-     ```sh
-     docker exec datobakeryshop-nginx-1 chmod 0640 -R /var/www/html/
-     ```
-
-     This command changes the permissions of all files and directories in `/var/www/html/` to `0640` recursively in the `datobakeryshop-nginx-1` container.
-
-   - List files to verify permissions:
-
-     ```sh
-     docker exec datobakeryshop-nginx-1 ls -la /var/www/html/
-     ```
-
-     This command lists all files and directories with detailed information in `/var/www/html` to verify the permissions.
+   ```sh
+   docker exec datobakeryshop-nginx-1 chmod 0740 -R /var/www/html/
+   ```
 
    - Change permissions to `777` recursively:
 
