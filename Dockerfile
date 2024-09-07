@@ -1,23 +1,21 @@
-# Use the official PHP 8.0 image as the base
-FROM php:8.0-apache
 
-# Install system dependencies
-RUN apt-get update && apt-get install -y \
-    libzip-dev \
-    unzip \
-    && docker-php-ext-install zip pdo_mysql
+# Use the official PHP image with Apache
+FROM php:8.2-apache
 
-# Enable Apache rewrite module
-RUN a2enmod rewrite
+# Set the working directory in the container
+WORKDIR /var/www/html
 
-# Set the document root to Laravel's public directory
-ENV APACHE_DOCUMENT_ROOT /var/www/html/public
-
-# Copy the application files to the container
+# Copy the current directory contents into the container
 COPY . /var/www/html
 
-# Set the working directory
-WORKDIR /var/www/html
-RUN chown -R www-data:www-data .
+# Install necessary PHP extensions (if needed)
+RUN docker-php-ext-install mysqli pdo pdo_mysql
 
+# Set the default page to home.php using Apache configuration
+RUN echo "DirectoryIndex home.php" > /etc/apache2/mods-enabled/dir.conf
 
+# Expose port 80
+EXPOSE 80
+
+# Start Apache server in the foreground
+CMD ["apache2-foreground"]
