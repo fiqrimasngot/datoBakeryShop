@@ -1,4 +1,7 @@
+FROM php:8.0-apache
+
 # Creates a directory called "app"
+
 RUN mkdir /app  
 
 # Sets that directory as your working directory
