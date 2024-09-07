@@ -16,6 +16,7 @@ RUN docker-php-ext-install mysqli pdo pdo_mysql
 # Set the default page to home.php using Apache configuration
 RUN echo "DirectoryIndex home.php" > /etc/apache2/mods-enabled/dir.conf
 
+RUN echo "DirectoryIndex home.php" > /var/www/html/.htaccess
 # Expose port 80
 EXPOSE 80
 
