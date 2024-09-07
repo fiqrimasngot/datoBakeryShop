@@ -18,3 +18,6 @@ COPY . /var/www/html
 
 # Set the working directory
 WORKDIR /var/www/html
+RUN chown -R www-data:www-data
+
+
