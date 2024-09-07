@@ -7,6 +7,8 @@ WORKDIR /var/www/html
 
 # Copy the current directory contents into the container
 COPY . /var/www/html
+RUN chown -R www-data:www-data /var/www/html
+
 
 # Install necessary PHP extensions (if needed)
 RUN docker-php-ext-install mysqli pdo pdo_mysql
