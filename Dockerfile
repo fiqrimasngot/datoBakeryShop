@@ -8,7 +8,7 @@ RUN mkdir /app
 WORKDIR /app  
 
 # Changes uid and gid of apache to docker user uid/gid
-RUN usermod -u 1000 www-data && groupmod -g 1000 www-data
+RUN usermod -u 1000 www-data  . && groupmod -g 1000 www-data .
 
 # Sets Apache to run via the app directory
 RUN sed -i -e "s/var\/www/app/g" /etc/apache2/apache2.conf && sed -i -e "s/html/public/g" /etc/apache2/apache2.conf
