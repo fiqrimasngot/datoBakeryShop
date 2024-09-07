@@ -1,20 +1,20 @@
+# Use the official PHP 8.0 image as the base
 FROM php:8.0-apache
 
-# Creates a directory called "app"
+# Install system dependencies
+RUN apt-get update && apt-get install -y \
+    libzip-dev \
+    unzip \
+    && docker-php-ext-install zip pdo_mysql
 
-RUN mkdir /app  
+# Enable Apache rewrite module
+RUN a2enmod rewrite
 
-# Sets that directory as your working directory
-WORKDIR /app  
+# Set the document root to Laravel's public directory
+ENV APACHE_DOCUMENT_ROOT /var/www/html/public
 
-# Changes uid and gid of apache to docker user uid/gid
-RUN usermod -u 1000 www-data  . && groupmod -g 1000 www-data .
+# Copy the application files to the container
+COPY . /var/www/html
 
-# Sets Apache to run via the app directory
-RUN sed -i -e "s/var\/www/app/g" /etc/apache2/apache2.conf && sed -i -e "s/html/public/g" /etc/apache2/apache2.conf
-
-# Copies your code to the image
-COPY . /app  
-
-# Sets permissions for the web user
-RUN chown -R www-data:www-data
+# Set the working directory
+WORKDIR /var/www/html
